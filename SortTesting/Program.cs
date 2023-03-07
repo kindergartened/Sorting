@@ -1,4 +1,4 @@
-﻿using static Sorting.Sorting;
+﻿using static Array.Sorting;
 
 namespace TestProgram
 {
@@ -6,8 +6,10 @@ namespace TestProgram
     {
         public static void Main()
         {
-            int[] arr = Sorting.Sorting.Filling("string", 10);
-            Console.WriteLine(Sorting.Sorting.CheckIsSorted(arr, true, "int"));
+            dynamic[] arr = Array.Sorting.Filling("string", 10);
+            Array.Sorting.HeapSort(arr, arr.Length, true, "string");
+            Console.WriteLine(String.Join("\n", arr));
+            Console.WriteLine(Array.Sorting.CheckIsSorted(arr, true, "string"));
         }   
     }
 }
