@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace Array
+namespace Sorter
 {
-    public class Sorting
+    public static class Sorting
     {
         public static dynamic[] Filling(string type, int count)
         {
@@ -38,7 +38,7 @@ namespace Array
         {
             for (int i = 0; i < arr.Length; i++)
                 for (int j = 0; j < arr.Length; j++)
-                    if (type == "string" ? IsAlphabeticallySmaller(arr[j], arr[i], direction) : direction ? arr[i] > arr[j] : arr[i] < arr[j]) Swap(ref arr[i], ref arr[j]);
+                    if (type == "string" ? IsAlphabeticallySmaller(arr[j], arr[i], direction) : direction ? arr[i] < arr[j] : arr[i] > arr[j]) Swap(ref arr[i], ref arr[j]);
             
             return arr;
         }
