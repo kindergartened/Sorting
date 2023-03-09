@@ -8,8 +8,8 @@ namespace Sorter
         {
             dynamic[] arr = new dynamic[count];
             Random rnd = new();
-            //const string chars = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            const string chars = "ABC"; // Легко проверить сортировку
+            const string chars = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            //const string chars = "ABC"; // Легко проверить сортировку
 
             if (type == "int")
             {
@@ -21,7 +21,7 @@ namespace Sorter
             }
             else
             {
-                for (int i = 0; i < count; i++) arr[i] = new string(Enumerable.Repeat(chars, 2).Select(s => s[rnd.Next(s.Length)]).ToArray());
+                for (int i = 0; i < count; i++) arr[i] = new string(Enumerable.Repeat(chars, 10).Select(s => s[rnd.Next(s.Length)]).ToArray());
             }
 
             return arr;

@@ -7,7 +7,7 @@ namespace TestProgram
         public static void Main()
         {
             dynamic[] arr = Sorter.Sorting.Filling("int", 10);
-            Sorter.Sorting.BubbleSort(arr, true, "int");
+            Sorter.Sorting.BubbleSort(arr, false, "int");
             Console.WriteLine(String.Join("\n", arr));
             Console.WriteLine(Sorter.Sorting.CheckIsSorted(arr, true, "int"));
         }   
