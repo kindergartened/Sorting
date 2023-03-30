@@ -8,8 +8,8 @@ namespace Sorter
         {
             dynamic[] arr = new dynamic[count];
             Random rnd = new();
-            const string chars = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-            //const string chars = "ABC"; // Легко проверить сортировку
+            // const string chars = " abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            const string chars = "ABC"; // Легко проверить сортировку
 
             if (type == "int")
             {
@@ -21,7 +21,7 @@ namespace Sorter
             }
             else
             {
-                for (int i = 0; i < count; i++) arr[i] = new string(Enumerable.Repeat(chars, 10).Select(s => s[rnd.Next(s.Length)]).ToArray());
+                for (int i = 0; i < count; i++) arr[i] = new string(Enumerable.Repeat(chars, 2).Select(s => s[rnd.Next(s.Length)]).ToArray());
             }
 
             return arr;
@@ -161,6 +161,33 @@ namespace Sorter
                 Swap(ref arr[i], ref arr[largest]);
                 Heapify(arr, n, largest, direction, type);
             }
+        }
+        static void SortCompareAndPush(Stack<dynamic> stack, ref dynamic item)
+        {
+            if (stack.Count > 0)
+            {    // if(!stack.IsEmpty) {
+                do
+                {
+                    var next_item = stack.Pop();
+                    if (item.CompareTo(next_item) == 1)
+                    {   // if(item > next_item) {
+                        (item, next_item) = (next_item, item);
+                    }
+                    SortCompareAndPush(stack, ref next_item);
+                } while (item.CompareTo(stack.Peek()) == 1);  // } while(item > stack.Top);
+            }
+            stack.Push(item);
+        }
+
+        public static dynamic[] SortStack(dynamic[] arr)
+        {
+            Stack<dynamic> stack = new(arr);
+            if (stack.Count > 1)
+            {     // if(!stack.IsEmpty) {
+                dynamic item = stack.Pop();
+                SortCompareAndPush(stack, ref item);
+            }
+            return arr.ToArray();
         }
         static bool IsAlphabeticallySmaller(string str1, string str2, bool direction)
         {

@@ -6,10 +6,12 @@ namespace TestProgram
     {
         public static void Main()
         {
-            dynamic[] arr = Sorter.Sorting.Filling("int", 10);
-            Sorter.Sorting.BubbleSort(arr, false, "int");
-            Console.WriteLine(String.Join("\n", arr));
-            Console.WriteLine(Sorter.Sorting.CheckIsSorted(arr, true, "int"));
+            dynamic[] arr = Filling("string", 10);
+            Console.WriteLine(string.Join(" ", arr));
+            Console.WriteLine();
+            SortStack(arr);
+            Console.WriteLine(string.Join(" ", arr));
+            Console.WriteLine(CheckIsSorted(arr, true, "string"));
         }   
     }
 }

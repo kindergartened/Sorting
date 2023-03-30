@@ -41,6 +41,8 @@
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.CountBox = new System.Windows.Forms.TextBox();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.timer = new System.Windows.Forms.TextBox();
+            this.textBox5 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // SortDirectionBox
@@ -210,12 +212,35 @@
             this.richTextBox1.TabIndex = 12;
             this.richTextBox1.Text = "";
             // 
+            // timer
+            // 
+            this.timer.Enabled = false;
+            this.timer.Location = new System.Drawing.Point(63, 592);
+            this.timer.Name = "timer";
+            this.timer.Size = new System.Drawing.Size(100, 23);
+            this.timer.TabIndex = 13;
+            // 
+            // textBox5
+            // 
+            this.textBox5.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.textBox5.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox5.Enabled = false;
+            this.textBox5.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBox5.Location = new System.Drawing.Point(169, 592);
+            this.textBox5.Name = "textBox5";
+            this.textBox5.Size = new System.Drawing.Size(33, 22);
+            this.textBox5.TabIndex = 14;
+            this.textBox5.Text = "мс";
+            this.textBox5.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(800, 598);
+            this.ClientSize = new System.Drawing.Size(800, 627);
+            this.Controls.Add(this.textBox5);
+            this.Controls.Add(this.timer);
             this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.CountBox);
             this.Controls.Add(this.textBox4);
@@ -251,5 +276,7 @@
         private TextBox textBox4;
         private TextBox CountBox;
         private RichTextBox richTextBox1;
+        private TextBox timer;
+        private TextBox textBox5;
     }
 }

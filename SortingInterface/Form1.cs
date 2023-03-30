@@ -1,5 +1,8 @@
 using Microsoft.VisualBasic;
 using static Sorter.Sorting;
+using System;
+using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace SortingInterface
 {
@@ -46,58 +49,77 @@ namespace SortingInterface
                 MessageBox.Show("Сгенерируйте массив");
                 return;
             }
-            string type = checkType();
-            bool direction = true;
-            switch (SortDirectionBox.Text)
-            {
-                case "По убыванию":
-                    direction = false;
-                    break;
-                case "По возрастанию":
-                    direction = true;
-                    break;
-            }
+            string type = checkType() ?? "";
+            Stopwatch stopWatch = new Stopwatch();
+            bool direction = checkDirection(SortDirectionBox.Text) ?? true;
             switch (BoxSort.Text)
             {
                 case "Пузырьковая":
+                    stopWatch = Stopwatch.StartNew();
                     BubbleSort(arr,direction,type);
+                    stopWatch.Stop();
+
+                    timer.Text = stopWatch.ElapsedMilliseconds.ToString();
                     richTextBox1.Text = string.Join("\n", arr);
                     break;
                 case "Вставками":
+                    stopWatch = Stopwatch.StartNew();
                     InsertionSort(arr, direction, type);
+                    stopWatch.Stop();
+
+                    timer.Text = stopWatch.ElapsedMilliseconds.ToString();
                     richTextBox1.Text = string.Join("\n", arr);
                     break;
                 case "Слиянием":
+                    stopWatch = Stopwatch.StartNew();
                     MergeSort(arr,0,arr.Length-1, direction, type);
+                    stopWatch.Stop();
+
+                    timer.Text = stopWatch.ElapsedMilliseconds.ToString();
                     richTextBox1.Text = string.Join("\n", arr);
                     break;
                 case "Быстрая":
+                    stopWatch = Stopwatch.StartNew();
                     QuickSort(arr, 0, arr.Length - 1, direction, type);
+                    stopWatch.Stop();
+
+                    timer.Text = stopWatch.ElapsedMilliseconds.ToString();
                     richTextBox1.Text = string.Join("\n", arr);
                     break;
                 case "Пирамидальная":
+                    stopWatch = Stopwatch.StartNew();
                     HeapSort(arr, arr.Length, direction, type);
+                    stopWatch.Stop();
+
+                    timer.Text = stopWatch.ElapsedMilliseconds.ToString();
                     richTextBox1.Text = string.Join("\n", arr);
                     break;
             }
         }
-  
-        private string checkType()
+        private bool? checkDirection(string box)
         {
-            string type = "";
+            switch (box)
+            {
+                case "По убыванию":
+                    return false;
+                case "По возрастанию":
+                    return true;
+            }
+            return null;
+        }
+  
+        private string? checkType()
+        {
             switch (arr[0].GetType().ToString())
             {
                 case "System.String":
-                    type = "string";
-                    break;
+                    return "string";
                 case "System.Int32":
-                    type = "int";
-                    break;
+                    return "int";
                 case "System.Double":
-                    type = "double";
-                    break;
+                    return "double";
             }
-            return type;
+            return null;
         }
         private void button1_Click(object sender, EventArgs e)
         {
@@ -106,17 +128,8 @@ namespace SortingInterface
                 MessageBox.Show("Сгенерируйте массив");
                 return;
             }
-            bool direction = true;
-            switch (CheckSortDirectionBox.Text)
-            {
-                case "По убыванию":
-                    direction = false;
-                    break;
-                case "По возрастанию":
-                    direction = true;
-                    break;
-            }
-            string type = checkType();
+            bool direction = checkDirection(CheckSortDirectionBox.Text) ?? true;
+            string type = checkType() ?? "";
             MessageBox.Show(CheckIsSorted(arr,direction,type).ToString());
         }
     }
